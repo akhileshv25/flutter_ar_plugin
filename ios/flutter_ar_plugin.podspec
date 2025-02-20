@@ -9,7 +9,7 @@ Pod::Spec.new do |s|
   s.description      = <<-DESC
 A new AR Flutter plugin project.
                        DESC
-  s.homepage         = 'http://example.com'
+  s.homepage         = 'https://github.com/akhileshv25/flutter_ar_plugin'
   s.license          = { :file => '../LICENSE' }
   s.author           = { 'Your Company' => 'akiakhilesh3426@gmail.com' }
   s.source           = { :path => '.' }
