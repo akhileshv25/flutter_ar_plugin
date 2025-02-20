@@ -1,11 +1,11 @@
 name: flutter_ar_plugin
 description: "A new Flutter plugin project."
 version: 0.0.1
-homepage:
+homepage: https://github.com/akhileshv25/flutter_ar_plugin.git
 
 environment:
   sdk: ^3.5.0
-  flutter: '>=3.3.0'
+  flutter: ">=3.3.0"
 
 dependencies:
   flutter:
