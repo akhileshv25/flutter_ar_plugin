@@ -1,0 +1,42 @@
+PODS:
+  - Flutter (1.0.0)
+  - flutter_ar_plugin (0.0.1):
+    - Flutter
+    - GLTFSceneKit
+  - GLTFSceneKit (0.3.0)
+  - integration_test (0.0.1):
+    - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - flutter_ar_plugin (from `.symlinks/plugins/flutter_ar_plugin/ios`)
+  - integration_test (from `.symlinks/plugins/integration_test/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+
+SPEC REPOS:
+  trunk:
+    - GLTFSceneKit
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  flutter_ar_plugin:
+    :path: ".symlinks/plugins/flutter_ar_plugin/ios"
+  integration_test:
+    :path: ".symlinks/plugins/integration_test/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  flutter_ar_plugin: 86900524b722577e50af770a3de3651222714bf0
+  GLTFSceneKit: d1b437c514ba2aed5555afb0fddd64e030612d57
+  integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
+  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
+
+PODFILE CHECKSUM: 819463e6a0290f5a72f145ba7cde16e8b6ef0796
+
+COCOAPODS: 1.15.2
