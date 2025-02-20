@@ -32,7 +32,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  flutter_ar_plugin: 86900524b722577e50af770a3de3651222714bf0
+  flutter_ar_plugin: df0a483f1de9388f365b03b55c1a36323e941250
   GLTFSceneKit: d1b437c514ba2aed5555afb0fddd64e030612d57
   integration_test: 252f60fa39af5e17c3aa9899d35d908a0721b573
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
