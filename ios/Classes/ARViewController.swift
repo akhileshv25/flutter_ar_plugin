@@ -18,14 +18,12 @@ class ARViewController: UIViewController, ARSCNViewDelegate, ARCoachingOverlayVi
     var modelUrl: String
     var imageUrl: String
     var scaleFactor: Float
-    var loadingUrl: String
     
    // let loadingLabel = UILabel()
     
-    init(modelUrl: String, imageUrl: String, scaleFactor: Double, loadingUrl: String) {
+    init(modelUrl: String, imageUrl: String, scaleFactor: Double) {
         self.modelUrl = modelUrl
         self.imageUrl = imageUrl
-        self.loadingUrl = loadingUrl
         self.scaleFactor = Float(scaleFactor)
         super.init(nibName: nil, bundle: nil)
     }

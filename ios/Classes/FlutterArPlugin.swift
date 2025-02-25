@@ -14,7 +14,6 @@ public class FlutterArPlugin: NSObject, FlutterPlugin {
             guard let args = call.arguments as? [String: Any],
                   let modelUrl = args["modelUrl"] as? String,
                   let imageUrl = args["imageUrl"] as? String,
-                  let loadingUrl = args["loadingUrl"] as? String,
                   let scaleFactor = args["scaleFactor"] as? Double else {
                 result(FlutterError(code: "INVALID_ARGUMENTS", message: "Invalid arguments", details: nil))
                 return
@@ -25,8 +24,7 @@ public class FlutterArPlugin: NSObject, FlutterPlugin {
                     let arViewController = ARViewController(
                         modelUrl: modelUrl,
                         imageUrl: imageUrl,
-                        scaleFactor: scaleFactor,
-                        loadingUrl: loadingUrl
+                        scaleFactor: scaleFactor
                     )
                     topController.present(arViewController, animated: true, completion: nil)
                     result(nil)
