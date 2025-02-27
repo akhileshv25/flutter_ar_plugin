@@ -26,6 +26,7 @@ public class FlutterArPlugin: NSObject, FlutterPlugin {
                         imageUrl: imageUrl,
                         scaleFactor: scaleFactor
                     )
+                    arViewController.modalPresentationStyle = .fullScreen // Ensure full-screen mode
                     topController.present(arViewController, animated: true, completion: nil)
                     result(nil)
                 } else {
@@ -37,12 +38,16 @@ public class FlutterArPlugin: NSObject, FlutterPlugin {
         }
     }
 
-    /// Helper function to get the top-most view controller
+    /// Helper function to get the top-most view controller (supports iOS 13+)
     private func getTopViewController() -> UIViewController? {
-        guard let rootViewController = UIApplication.shared.keyWindow?.rootViewController else {
+        guard let keyWindow = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .flatMap({ $0.windows })
+            .first(where: { $0.isKeyWindow }) else {
             return nil
         }
-        var topController: UIViewController = rootViewController
+
+        var topController: UIViewController = keyWindow.rootViewController!
         while let presentedViewController = topController.presentedViewController {
             topController = presentedViewController
         }
