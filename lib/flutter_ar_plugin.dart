@@ -6,7 +6,7 @@ class FlutterArPlugin {
   static Future<void> launchARView({
     required String modelUrl,
     required String imageUrl,
-    required double scaleFactor, // Add scale factor
+    required double scaleFactor,
   }) async {
     await _channel.invokeMethod('launchARView', {
       'modelUrl': modelUrl,
