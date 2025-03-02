@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
                   "https://firebasestorage.googleapis.com/v0/b/arsample-595f2.appspot.com/o/Furniture%2Fqr.jpeg?alt=media&token=b39cb577-6f5e-42b6-8172-c2194da5ec27";
 
               FlutterArPlugin.launchARView(
-                  modelUrl: modelUrl, imageUrl: imageUrl, scaleFactor: 10);
+                  modelUrl: modelUrl, imageUrl: imageUrl, scaleFactor: 1);
             },
             child: Text("Launch AR"),
           ),

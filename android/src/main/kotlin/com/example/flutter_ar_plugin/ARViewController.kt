@@ -44,6 +44,7 @@ class ARViewController : FragmentActivity(), Scene.OnUpdateListener {
     private var coachingOverlay: View? = null
     private var loadingIndicator: ProgressBar? = null
     private var loadingLabel: TextView? = null
+     private var customOverlay: TextView? = null
     private var modelLoaded = false
     private var logFile: File? = null
 // Model builder
@@ -82,25 +83,30 @@ class ARViewController : FragmentActivity(), Scene.OnUpdateListener {
             .replace(android.R.id.content, arFragment)
             .commit()
 
-       coachingOverlay = View(this).apply {
-    layoutParams = FrameLayout.LayoutParams(
-        FrameLayout.LayoutParams.MATCH_PARENT,
-        FrameLayout.LayoutParams.MATCH_PARENT
-    )
-    setBackgroundColor(resources.getColor(android.R.color.darker_gray))
-    visibility = View.GONE
-}
+//        coachingOverlay = View(this).apply {
+//     layoutParams = FrameLayout.LayoutParams(
+//         FrameLayout.LayoutParams.MATCH_PARENT,
+//         FrameLayout.LayoutParams.MATCH_PARENT
+//     )
+//     setBackgroundColor(resources.getColor(android.R.color.darker_gray))
+//     visibility = View.GONE
+// }
 
-arLayout.addView(coachingOverlay)
+//arLayout.addView(coachingOverlay)
 
         setContentView(arLayout)
 
         supportFragmentManager.executePendingTransactions()
+        
 
         lifecycleScope.launch {
             waitForArSceneView()
+            arFragment.planeDiscoveryController.hide()
+        arFragment.planeDiscoveryController.setInstructionView(null)
+        arFragment.transformationSystem.selectionVisualizer = null
             arFragment.arSceneView.scene.addOnUpdateListener(this@ARViewController)
             loadReferenceImage()
+            showCustomOverlayLabel()
         }
     }
 
@@ -169,10 +175,11 @@ arLayout.addView(coachingOverlay)
 
         if (image.trackingState == TrackingState.TRACKING && image.name == "TargetQR") {
             if (!modelLoaded) {
+                hideCustomOverlayLabel()
                 Log.d("ARViewController", "QR Code detected! Loading model...")
                 logMessage("ARViewController", "QR Code detected! Loading model...")
                 modelLoaded = true
-                runOnUiThread { coachingOverlay?.visibility = View.GONE }
+               // runOnUiThread { coachingOverlay?.visibility = View.GONE }
                 runOnUiThread { showLoadingIndicator() }
 
                 // Ensure scaleFactor is applied correctly
@@ -315,6 +322,41 @@ arLayout.addView(coachingOverlay)
     }
 }
 
+private fun showCustomOverlayLabel() {
+    runOnUiThread {
+        val layout = arFragment.view as ViewGroup
+        if (customOverlay == null) {
+            customOverlay = TextView(this@ARViewController).apply {
+                text = "Place the Camera On QR"
+                setTextColor(resources.getColor(android.R.color.white))
+                textSize = 18f
+                setPadding(20, 20, 20, 20)
+                setBackgroundColor(resources.getColor(android.R.color.black))
+                
+                layoutParams = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    gravity = android.view.Gravity.CENTER  // Ensures it is centered both horizontally and vertically
+                }
+            }
+        }
+        
+        // Ensure it's not added multiple times
+        customOverlay?.parent?.let { (it as ViewGroup).removeView(customOverlay) }
+        layout.addView(customOverlay)
+        customOverlay?.visibility = View.VISIBLE
+    }
+}
+
+
+
+private fun hideCustomOverlayLabel()
+{
+    runOnUiThread {
+        customOverlay?.visibility = View.GONE
+    }
+}
     private fun logMessage(tag: String, message: String) {
     try {
         logFile?.appendText("${System.currentTimeMillis()} - [$tag] $message\n")
@@ -322,4 +364,6 @@ arLayout.addView(coachingOverlay)
         Log.e(tag, "Failed to write log: $message", e)
     }
 }
+
+
 }
