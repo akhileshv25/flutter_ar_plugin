@@ -1,6 +1,6 @@
 name: flutter_ar_plugin
 description: "flutter_ar_plugin is a Flutter plugin that allows users to load and display 3D models dynamically using ARKit. The plugin supports loading models and reference images from URLs and provides options for setting the model's scale factor."
-version: 0.1.1
+version: 0.0.2
 homepage: https://github.com/akhileshv25/flutter_ar_plugin.git
 
 environment:
